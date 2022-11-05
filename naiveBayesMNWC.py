@@ -4,7 +4,7 @@ import csv
 
 from matplotlib import pyplot as plt
 
-from DatasetTrasformation import *
+from featureExctraction_Cleaning_Encoding import *
 import seaborn as sns; sns.set()
 from sklearn.metrics import classification_report, f1_score, confusion_matrix
 from sklearn.model_selection import train_test_split
@@ -19,7 +19,7 @@ print('\n Loading data... \n')
 data = pd.DataFrame(pd.read_json('train.json/train.json'))
 
 print('\n Cleaning data... \n')
-data = pd.DataFrame(ingredientsToString(data))
+data = pd.DataFrame(ingredientsExtraction(data))
 
 X = pd.Series(data['ingredients'])
 t = pd.Series(data['cuisine'])

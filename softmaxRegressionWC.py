@@ -1,7 +1,7 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 
-from DatasetTrasformation import *
+from featureExctraction_Cleaning_Encoding import *
 import seaborn as sns; sns.set()
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.metrics import f1_score
@@ -21,7 +21,7 @@ data = pd.DataFrame(pd.read_json('train.json/train.json'))
 print('\n Cleaning data... \n')
 
 
-data = pd.DataFrame(ingredientsToString(data))
+data = pd.DataFrame(ingredientsExtraction(data))
 
 X = pd.Series(data['ingredients'])
 t = pd.Series(data['cuisine'])

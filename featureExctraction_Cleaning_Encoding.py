@@ -1,3 +1,8 @@
+#this file aim to be a little function library
+#for apply cleaning, extraction and encoding to this dataset,
+#in this way i avoide code duplication and the scripts are more readable.
+#
+#main functions: ingredientsExtraction, cleaningIngredients
 import re
 import pandas as pd
 import numpy as np
@@ -55,7 +60,12 @@ def applyLemmatizer(ing):
     ing = [[x.replace(x, lemmatize.lemmatize(x)) for x in y] for y in ing]
     return ing
 
-def ingredientsToString(data):
+def ingredientsExtraction(data):
+    # This function clean the feature ingredients by varius operations,
+    #
+    # remove : numbers, special chars, extra white space and units
+    # make   : lower case
+    # apply  : lemmatizer
 
     data['ingredients'] = remove_numbers(data['ingredients'])
     data['ingredients'] = remove_special_chars(data['ingredients'])
@@ -73,7 +83,12 @@ def ingredientsToString(data):
         data['ingredients'].loc[i] = s
     return data
 
-def ingredientsToColumns(data):
+def cleaningIngredients(data):
+    #This function clean the feature ingredients by varius operations
+    #
+    #remove : numbers, special chars, extra white space and units
+    #make   : lower case
+    #apply  : lemmatizer
 
     data['ingredients'] = remove_numbers(data['ingredients'])
     data['ingredients'] = remove_special_chars(data['ingredients'])
@@ -88,11 +103,13 @@ def ingredientsToColumns(data):
     return data['ingredients']
 
 def encodeCusine(t):
+    #lebal encoder
     le =preprocessing.LabelEncoder()
     t = le.fit_transform(t)
 
-    return t , le
+    return t, le
 
 def decodeCusine(t, le):
+    #label decoder
     t = le.inverse_transform(t)
     return t
