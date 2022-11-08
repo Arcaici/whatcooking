@@ -43,7 +43,7 @@ t = pd.Series(t)
 print('Splitting dataset (train, validation, test)... \n')
 
 X_train, X_temp, t_train, t_temp = train_test_split( X, t, test_size=0.2, random_state=42)
-X_val, X_test, t_val, t_test = train_test_split( X, t, test_size=0.5, random_state=42)
+X_val, X_test, t_val, t_test = train_test_split( X_temp, t_temp, test_size=0.5, random_state=42)
 
 print('\n Model selection...\n')
 
