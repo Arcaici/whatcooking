@@ -60,12 +60,14 @@ def applyLemmatizer(ing):
     ing = [[x.replace(x, lemmatize.lemmatize(x)) for x in y] for y in ing]
     return ing
 
-def ingredientsExtraction(data):
+def ingredientsExtraction(data, cleaning = 'only'):
     # This function clean the feature ingredients by varius operations,
     #
     # remove : numbers, special chars, extra white space and units
     # make   : lower case
     # apply  : lemmatizer
+    # cleaning -> only          : just apply cleaning to data
+    #             extraction    : return ingrieds for feature exctraction purpose
 
     data['ingredients'] = remove_numbers(data['ingredients'])
     data['ingredients'] = remove_special_chars(data['ingredients'])
@@ -74,33 +76,32 @@ def ingredientsExtraction(data):
     data['ingredients'] = remove_units(data['ingredients'])
     data['ingredients'] = applyLemmatizer(data['ingredients'])
 
+    if cleaning == 'only':
+        data = cleanIngredients(data)
+    elif cleaning == 'extraction':
+        data = extractFeatures(data)
+
+    return data
+
+def cleanIngredients(data):
+    # This function return the cleaned Ingredients
+    # as a list of ingredients for each sample
+    for y in range(len(data['ingredients'])):
+       data['ingredients'].loc[y] = [x.replace(" ", "") for x in data['ingredients'].loc[y]]
+
+    return data['ingredients']
+
+def extractFeatures(data):
+    # This function return the cleaned Ingredients
+    # as a features for each sample
     s = ''
     for i in range(len(data['ingredients'])):
-        s =''
+        s = ''
         for x in data['ingredients'].loc[i]:
             x.replace(x, re.sub('[^A-Za-z]+', '', x))
             s = s + " " + x
         data['ingredients'].loc[i] = s
     return data
-
-def cleaningIngredients(data):
-    #This function clean the feature ingredients by varius operations
-    #
-    #remove : numbers, special chars, extra white space and units
-    #make   : lower case
-    #apply  : lemmatizer
-
-    data['ingredients'] = remove_numbers(data['ingredients'])
-    data['ingredients'] = remove_special_chars(data['ingredients'])
-    data['ingredients'] = make_lowercase(data['ingredients'])
-    data['ingredients'] = remove_extra_whitespace(data['ingredients'])
-    data['ingredients'] = remove_units(data['ingredients'])
-    data['ingredients'] = applyLemmatizer(data['ingredients'])
-
-    for y in range(len(data['ingredients'])):
-       data['ingredients'].loc[y] = [x.replace(" ", "") for x in data['ingredients'].loc[y]]
-
-    return data['ingredients']
 
 def encodeCusine(t):
     #lebal encoder

@@ -36,7 +36,7 @@ print(f"total recipes: {data['cuisine'].value_counts().sum()}\n")
 print(f"unique labels : {data['cuisine'].value_counts().count()}")
 
 #cleaning ingredients (see Cleaning data)
-ingredients = cleaningIngredients(data)
+ingredients = ingredientsExtraction(data, 'only')
 
 #list of all ingredients with repetead ones
 ingredients = ingredients.apply(pd.Series).stack().reset_index(drop = True)
@@ -72,3 +72,10 @@ ax.set_xlabel("ingredients occurrencys bin")
 plt.show()
 
 #conclusion
+
+    #Features
+    #Features are extracted from the list ingredients from each sample, the total ammount of unique features is 6645,
+    #and i will use just some of them because a lot of them are present just few times over all recipes
+
+    #Dataset
+    # the dataset is strictly ambalaced so i will use f1-score as measurament for understand how the model generalize well the uknowown problem.
