@@ -130,4 +130,4 @@ plt.show()
 # thats results to be the same respect to f1-weighted-score used in the first approach to model tunning.
 #
 #Observation:
-#in sktlearn->classification_report f1-micro-score is + to accuracy.
+#in sktlearn->classification_report f1-micro-score is = to accuracy.
