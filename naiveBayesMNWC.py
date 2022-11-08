@@ -19,7 +19,9 @@ print('\n Loading data... \n')
 data = pd.DataFrame(pd.read_json('train.json/train.json'))
 
 print('\n Cleaning data... \n')
-data = pd.DataFrame(ingredientsExtraction(data))
+data = pd.DataFrame(ingredientsExtraction(data, "extraction"))
+
+print(data.head())
 
 X = pd.Series(data['ingredients'])
 t = pd.Series(data['cuisine'])
