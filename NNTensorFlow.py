@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 import tensorflow as tf
 from tensorflow import keras
+import tensorflow_addons as tfa
 import datetime
 import shutil
 
@@ -66,7 +67,7 @@ NB_LABELS = 20
 RESHAPE = X_train.shape[1]
 NB_HIDDEN = 128
 BATCH_SIZE = 128
-EPOCHS = 400
+EPOCHS = 500 #SGD converg close to 400  epochs
 VERBOSE = 1
 VALIDATION_SPLIT = 0.2
 DROPOUT = 0.3
@@ -94,7 +95,10 @@ model.summary()
 #compiling model
 model.compile(optimizer='SGD',
               loss='categorical_crossentropy',
-              metrics= ['accuracy'])
+              metrics= [tf.keras.metrics.BinaryAccuracy(),
+                      tfa.metrics.F1Score(num_classes=NB_LABELS,
+                      average='micro',
+                      threshold=0.5)])
 #tensorboard
 log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
@@ -110,5 +114,5 @@ model.fit(X_train,t_train,
 #use this command on terminal: tensorboard --logdir logs/fit
 
 #evaluation
-test_loss, test_acc = model.evaluate(X_temp,t_temp, callbacks=[tensorboard_callback])
-print('Test Accuracy:', test_acc)
+test_loss, test_acc, test_f1_micro = model.evaluate(X_temp,t_temp,callbacks=tensorboard_callback)
+print('Test Accuracy:', test_f1_micro)
