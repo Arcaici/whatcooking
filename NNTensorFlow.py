@@ -67,7 +67,7 @@ NB_LABELS = 20
 RESHAPE = X_train.shape[1]
 NB_HIDDEN = 128
 BATCH_SIZE = 128
-EPOCHS = 500 #SGD converg close to 400  epochs -> micro: 0.763 || Adam converge close to 500 -> 0.769 : 0,00001
+EPOCHS = 90 #SGD converg close to 400  epochs -> micro: 0.763 || Adam converge close to 500 -> 0.769 : 0,00001 || RMSprop converge close to 90 -> 0.767 : 0,0001
 VERBOSE = 1
 VALIDATION_SPLIT = 0.2
 DROPOUT = 0.3
@@ -96,7 +96,7 @@ model.add(keras.layers.Dense(NB_LABELS,
 model.summary()
 
 #compiling model
-model.compile(optimizer='SGD',
+model.compile(optimizer=OPTIMIZER,
               loss='categorical_crossentropy',
               metrics= [tf.keras.metrics.BinaryAccuracy(),
                       tfa.metrics.F1Score(num_classes=NB_LABELS,
