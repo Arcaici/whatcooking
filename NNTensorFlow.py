@@ -67,10 +67,13 @@ NB_LABELS = 20
 RESHAPE = X_train.shape[1]
 NB_HIDDEN = 128
 BATCH_SIZE = 128
-EPOCHS = 500 #SGD converg close to 400  epochs
+EPOCHS = 500 #SGD converg close to 400  epochs -> micro: 0.763 || Adam converge close to 500 -> 0.769 : 0,00001
 VERBOSE = 1
 VALIDATION_SPLIT = 0.2
 DROPOUT = 0.3
+L_RATE = 0.0001 #da provare
+RHO = 0.9
+OPTIMIZER = tf.keras.optimizers.RMSprop(learning_rate=L_RATE, rho= RHO)
 model = tf.keras.models.Sequential()
 #input layer
 model.add(keras.layers.Dense(NB_HIDDEN,
