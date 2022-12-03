@@ -12,12 +12,14 @@ In This project i decide to implement three differents models:
 - *Naive Bayes*
 - *Sofmax Regression*
 - *Neaural Network*
+
 The first two models were implemented using ***scikit-learn*** library, while Neural Network was implement with ***TensorFlow 2***.
 
 ### Features extraction
 The dataset contained only two features: 
 - _id_
 - _ingredients_
+
 Id was use just for identify predictions, while ingredients was processed for extract single ingredients for each recipe, and then i cleaned the ingredients by:
 1. removing numbers
 2. removing special chars
