@@ -119,3 +119,9 @@ model.fit(X_train,t_train,
 #evaluation
 test_loss, test_acc, test_f1_micro = model.evaluate(X_temp,t_temp,callbacks=tensorboard_callback)
 print('Test Accuracy:', test_f1_micro)
+
+# First conclusions
+# (relu)
+# SGD converg close to 400  epochs -> micro: 0.763
+# Adam converge close to 500 -> 0.769 : 0,00001
+# RMSprop converge close to 90 -> 0.769 : 0,0001
