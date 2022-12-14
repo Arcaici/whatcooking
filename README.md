@@ -61,18 +61,18 @@ performance are calculated using f1-micro-score.
 
 |result | score | regularisation | regularisation factor* | learning rate |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| 1°  | 0.80 | n/a | n/a | 0.0001 |
-| 2°  | 0.77  | l2 | 1.0 | n/a |
+| 1°  | 0.77 | n/a | n/a | 0.0001 |
+| 1°  | 0.77  | l2 | 1.0 | n/a |
 | 3°  | 0.71  | n/a | n/a | n/a |
 
 *regularisation factor is 1.0 because the model doesn't use regularisation.
 
 ## Conclusion
 
-The f1-micro-score that neural network reached is good, but unfortunally the confusion matrix result with a lot of false positive, so the model does not perform well in all classes. All false positive predictions are check using _confusion matrix_ and individual f1-score are check too.  These results depend on the imbalance of the dataset, infact class with higher samples as higher f1-score.
+The f1-micro-score that neural network and softmaxregression reached is good, but unfortunally the confusion matrix result with a lot of false positive, so the models do not perform well in all classes. All false positive predictions are check using _confusion matrix_ and individual f1-score are check too.  These results depend on the imbalance of the dataset, infact class with higher samples has higher f1-score.
 
 ### Possible implementation
 There are two possible implementation:
 
-* **Resampling:** for manage the imbalace of the dataset it could be a good practice to apply undersampling to large classes such as _italin_ and apply oversampling to smaller classes. It is not a one of the best practice, but sometimes can be really useful.
+* **Resampling:** for manage the imbalace of the dataset it could be a good practice to apply undersampling to large classes such as _italian_ and apply oversampling to smaller classes. It is not a one of the best practice, but sometimes can be really useful.
 * **different models:** It could be interesting to try models like _Support Vector Machine_ or to check if there is a way to adapt this dataset to _Recurrent Neural Network_. 
