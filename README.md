@@ -48,4 +48,21 @@ The eda results in a soft manner, checking the occurrency of each ingrient and p
 ![Ingredients Occurency in Log Scale](https://github.com/Arcaici/whatcooking/blob/NeuralNetwork_wirh_TensowFlow/images/IngredientsOccurrency_logscale.png)
 
 ## Model Tuning
-Each model take in input words with a minimum document frequency of 50 units and a maximum document frequency of 6000, while for n-gram, 1-gram and 2-gram. These statistics are choose using Naive Bayes, this model is used as a base model for check which words statistics perfom best in f1-micro-score.
+Each model take in input words with a minimum document frequency of 50 units and a maximum document frequency of 6000, while for n-gram, 1-gram and 2-gram. These statistics are choose using Naive Bayes, this model is used as a base model for check which words statistics perfom best in f1-micro-score, and they are use with the other models too.
+
+### Performance metrics
+I use f1-micro-score as performance metric, because the dataset task is not to better predict a class respect to the others, but to predict all classes with the same probability.
+
+### Approaches
+Each model is tune using grid search technique based on reguralization and learning-rate.
+
+## Performance 
+performance are calculated using f1-micro-score.
+
+|result | score | regularization | regularization factor* | learning rate |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| 1°  | 0.80 | n/a | n/a | 0.0001 |
+| 2°  | 0.77  | l2 | 1.0 | n/a |
+| 3°  | 0.71  | n/a | n/a | n/a |
+
+## Conclusion
