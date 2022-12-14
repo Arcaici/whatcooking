@@ -2,10 +2,10 @@
 > (First Machine Learning Project)
 
 ## Introduction
-What's Cooking is a dataset available on [Kaggle](https://www.kaggle.com/competitions/whats-cooking) and provided by [yummly](https://www.yummly.com/about). The Dataset include a train.json file containing 39774 recipes with 20 different cusine types that results in a unbalanced dataset.
+What's Cooking is a dataset available on [Kaggle](https://www.kaggle.com/competitions/whats-cooking) and provided by [yummly](https://www.yummly.com/about). The Dataset include a train.json file containing 39774 recipes with 20 different cuisine types that results in a unbalanced dataset.
 
 ### Task
-The challenge is to find a model that predict cusine types using the ingredients as features.
+The challenge is to find a model that predict cuisine types using the ingredients as features.
 
 ## Approches
 In This project i decide to implement three differents models:
