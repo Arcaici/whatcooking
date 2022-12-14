@@ -20,7 +20,7 @@ The dataset contained only two features:
 - _id_
 - _ingredients_
 
-Id was use just for identify predictions, while ingredients was processed for extract single ingredients for each recipe, and then i cleaned the ingredients by:
+Id is use just for identify predictions, while ingredients is processed for extract single ingredients for each recipe, and then i clean the ingredients by:
 1. removing numbers
 2. removing special chars
 3. making every letters lowercase
@@ -35,7 +35,7 @@ Id was use just for identify predictions, while ingredients was processed for ex
 - *ntlk.stem.WordNetLemmatizer*
 
 ## Exploratory Data Analisys
-The eda results in a soft manner, checking the occurrency of each ingrient and plotting a bar chart that show how many ingredients have a range of n occurency, over differents range.
+The eda results in a soft manner, checking the occurrency of each ingredient and plotting a bar chart that show how many ingredients have a range of n occurency, over differents ranges.
 
 ### Libraries used
 - *re* 
@@ -48,7 +48,7 @@ The eda results in a soft manner, checking the occurrency of each ingrient and p
 ![Ingredients Occurency in Log Scale](https://github.com/Arcaici/whatcooking/blob/NeuralNetwork_wirh_TensowFlow/images/IngredientsOccurrency_logscale.png)
 
 ## Model Tuning
-Each model take in input words with a minimum document frequency of 50 units and a maximum document frequency of 6000, while for n-gram, 1-gram and 2-gram. These statistics are choose using Naive Bayes, this model is used as a base model for check which words statistics perfom best in f1-micro-score, and they are use with the other models too.
+Each model take in input words with a minimum document frequency of 50 units and a maximum document frequency of 6000 units, while for n-gram, 1-gram and 2-gram are choose as the best result. These statistics are choose using Naive Bayes, this model is used as a base model for check which words statistics perfom best over f1-micro-score, and they are use with the other models too.
 
 ### Performance metrics
 I use f1-micro-score as performance metric, because the dataset task is not to better predict a class respect to the others, but to predict all classes with the same probability.
@@ -59,15 +59,20 @@ Each model is tune using grid search technique based on reguralization and learn
 ## Performance 
 performance are calculated using f1-micro-score.
 
-|result | score | regularization | regularization factor* | learning rate |
+|result | score | regularisation | regularisation factor* | learning rate |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | 1°  | 0.80 | n/a | n/a | 0.0001 |
 | 2°  | 0.77  | l2 | 1.0 | n/a |
 | 3°  | 0.71  | n/a | n/a | n/a |
 
+*regularisation factor is 1.0 because the model doesn't use regularisation.
+
 ## Conclusion
 
-The f1-micro-score that neural network reached is good, but unfortunally the confusion matrix result with a lot of false positive, so the model does not perform well in all classes. These results depend on the imbalance of the dataset.
+The f1-micro-score that neural network reached is good, but unfortunally the confusion matrix result with a lot of false positive, so the model does not perform well in all classes. All false positive predictions are check using _confusion matrix_ and individual f1-score are check too.  These results depend on the imbalance of the dataset, infact class with higher samples as higher f1-score.
 
 ### Possible implementation
-A possible implementation that could resolve this problem is
+There are two possible implementation:
+
+* **Resampling:** for manage the imbalace of the dataset it could be a good practice to apply undersampling to large classes such as _italin_ and apply oversampling to smaller classes. It is not a one of the best practice, but sometimes can be really useful.
+* **different models:** It could be interesting to try models like _Support Vector Machine_ or to check if there is a way to adapt this dataset to _Recurrent Neural Network_. 
