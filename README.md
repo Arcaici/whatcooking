@@ -66,3 +66,8 @@ performance are calculated using f1-micro-score.
 | 3°  | 0.71  | n/a | n/a | n/a |
 
 ## Conclusion
+
+The f1-micro-score that neural network reached is good, but unfortunally the confusion matrix result with a lot of false positive, so the model does not perform well in all classes. These results depend on the imbalance of the dataset.
+
+### Possible implementation
+A possible implementation that could resolve this problem is
