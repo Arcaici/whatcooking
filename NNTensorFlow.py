@@ -7,13 +7,15 @@ from tensorflow import keras
 import tensorflow_addons as tfa
 import datetime
 import shutil
+import os
 
 # print(tf.config.list_physical_devices('GPU'))
 # from tensorflow.python.client import device_lib
 # print(device_lib.list_local_devices())
 print('Deleting last logs... \n')
 p_dir = './logs/fit'
-shutil.rmtree(p_dir)
+if (os.path.exists(p_dir)):
+    shutil.rmtree(p_dir)
 
 print('Loading data... \n')
 pd.set_option("display.max_columns", None)
@@ -61,19 +63,19 @@ t_temp  = tf.keras.utils.to_categorical(t_temp)
 print(t_train)
 print(X_train.shape)
 
-print('Trying tensor flow 2...\n')
+print('Model testing...\n')
 #settings variable
 NB_LABELS = 20
 RESHAPE = X_train.shape[1]
-NB_HIDDEN = 128
+NB_HIDDEN = 300
 BATCH_SIZE = 128
-EPOCHS = 90
+EPOCHS = 400
 VERBOSE = 1
 VALIDATION_SPLIT = 0.2
 DROPOUT = 0.3
-L_RATE = 0.0001 #da provare
+L_RATE = 0.01
 RHO = 0.9
-OPTIMIZER = tf.keras.optimizers.RMSprop(learning_rate=L_RATE, rho= RHO)
+OPTIMIZER = tf.keras.optimizers.SGD(learning_rate=L_RATE)
 model = tf.keras.models.Sequential()
 #input layer
 model.add(keras.layers.Dense(NB_HIDDEN,
@@ -120,8 +122,24 @@ model.fit(X_train,t_train,
 test_loss, test_acc, test_f1_micro = model.evaluate(X_temp,t_temp,callbacks=tensorboard_callback)
 print('Test Accuracy:', test_f1_micro)
 
-# First conclusions
+# Conclusion
+
+# HIDDEN_LAYER 128 : 2
 # (relu)
-# SGD converg close to 400  epochs -> micro: 0.763
-# Adam converge close to 500 -> 0.769 : 0,00001
-# RMSprop converge close to 90 -> 0.769 : 0,0001
+    # SGD converg close to 400  epochs -> micro: 0.763 : 0,01
+    # Adam converge close to 500 -> 0.769 : 0,00001
+    # RMSprop converge close to 90 -> 0.769 : 0,0001
+# (tanh)
+    # SGD converg close to 500  epochs -> micro: 0.762 :0,01
+    # Adam converge close to 500 -> 0.761 : 0,00001
+    # RMSprop converge close to 90 -> 0.763 : 0,0001
+
+# HIDDEN_LAYER 300 : 2
+# (relu)
+    # SGD converg close to 400  epochs -> micro: 0.767 : 0,01
+    # Adam converge close to 200 -> 0.769 : 0,00001
+    # RMSprop converge close to 90 -> 0.77 : 0,0001
+# (tanh)
+    # SGD converg close to 300  epochs -> micro: 0.765 :0,01
+    # Adam converge close to 200 -> 0.762 : 0,00001
+    # RMSprop converge close to 40 -> 0.766 : 0,0001
