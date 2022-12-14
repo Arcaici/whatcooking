@@ -63,10 +63,20 @@ px = 1/plt.rcParams['figure.dpi']  # pixel in inches
 
 fig, ax = plt.subplots(figsize=(1400*px, 800*px))
 
-ax.bar(labels, counts)
+ax.bar(labels, counts,color = (0,0,1, 0.6))
 
 ax.set_title("Ingredients occurrency")
-ax.set_ylabel("number of features")
+ax.set_ylabel("number of features ")
+ax.set_xlabel("ingredients occurrencys bin")
+
+plt.show()
+
+fig, ax = plt.subplots(figsize=(1400*px, 800*px))
+
+ax.bar(labels, np.log(counts),color = (1,0,0, 0.6))
+
+ax.set_title("Ingredients occurrency")
+ax.set_ylabel("number of features (log scale)")
 ax.set_xlabel("ingredients occurrencys bin")
 
 plt.show()

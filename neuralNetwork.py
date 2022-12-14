@@ -21,15 +21,10 @@ from sklearn.pipeline import make_pipeline
 from sklearn.neural_network import MLPClassifier
 
 print('Loading data... \n')
-
 pd.set_option("display.max_columns", None)
-
-
 data = pd.DataFrame(pd.read_json('train.json/train.json'))
 
 print('Cleaning data... \n')
-
-
 data = pd.DataFrame(ingredientsExtraction(data, 'extraction'))
 
 X = pd.Series(data['ingredients'])
@@ -41,13 +36,10 @@ t, le = encodeCusine(t)
 t = pd.Series(t)
 
 print('Splitting dataset (train, validation, test)... \n')
-
 X_train, X_temp, t_train, t_temp = train_test_split( X, t, test_size=0.2, random_state=42)
 X_val, X_test, t_val, t_test = train_test_split( X_temp, t_temp, test_size=0.5, random_state=42)
 
 print('\n Model selection...\n')
-
-
 lrs = [0.0001, 0.001, 0.01, 0.1]
 best_score_avg = 0
 best_lr = 0

@@ -89,7 +89,7 @@ def cleanIngredients(data):
     for y in range(len(data['ingredients'])):
        data['ingredients'].loc[y] = [x.replace(" ", "") for x in data['ingredients'].loc[y]]
 
-    return data
+    return data["ingredients"]
 
 def extractFeatures(data):
     # This function return the cleaned Ingredients
