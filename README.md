@@ -28,7 +28,7 @@ Id was use just for identify predictions, while ingredients was processed for ex
 5. removing units
 6. applyng lemmatizer.
 
-### libraries used
+### Libraries used
 - *re* 
 - *pandas*
 - *scikit-learn.preprocessing*
@@ -37,7 +37,7 @@ Id was use just for identify predictions, while ingredients was processed for ex
 ## Exploratory Data Analisys
 The eda results in a soft manner, checking the occurrency of each ingrient and plotting a bar chart that show how many ingredients have a range of n occurency, over differents range.
 
-### libraries used
+### Libraries used
 - *re* 
 - *pandas*
 - *matplotlib.pyplot*
@@ -47,3 +47,5 @@ The eda results in a soft manner, checking the occurrency of each ingrient and p
   
 ![Ingredients Occurency in Log Scale](https://github.com/Arcaici/whatcooking/blob/NeuralNetwork_wirh_TensowFlow/images/IngredientsOccurrency_logscale.png)
 
+## Model Tuning
+Each model take in input words with a minimum document frequency of 50 units and a maximum document frequency of 6000, while for n-gram, 1-gram and 2-gram. These statistics are choose using Naive Bayes, this model is used as a base model for check which words statistics perfom best in f1-micro-score.
