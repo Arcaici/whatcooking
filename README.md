@@ -59,11 +59,11 @@ Each model is tune using grid search technique based on reguralization and learn
 ## Performance 
 performance are calculated using f1-micro-score.
 
-|result | score | regularisation | regularisation factor* | learning rate |
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-| 1°  | 0.77 | n/a | n/a | 0.0001 |
-| 1°  | 0.77  | l2 | 1.0 | n/a |
-| 3°  | 0.71  | n/a | n/a | n/a |
+|result | model | score | regularisation | regularisation factor* | learning rate |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| 1°  | Neural Network | 0.77 | n/a | n/a | 0.0001 |
+| 1°  | Sofmax Regression | 0.77  | l2 | 1.0 | n/a |
+| 3°  | Naive Bayes | 0.71  | n/a | n/a | n/a |
 
 *regularisation factor is 1.0 because the model doesn't use regularisation.
 
