@@ -43,9 +43,9 @@ The eda results in a soft manner, checking the occurrency of each ingredient and
 - *matplotlib.pyplot*
 
 ### Charts
-![Ingredients Occurency](https://github.com/Arcaici/whatcooking/blob/NeuralNetwork_wirh_TensowFlow/images/IngredientsOccurrency.png)
+![Ingredients Occurency](https://github.com/Arcaici/whatcooking/blob/master/images/IngredientsOccurrency.png)
   
-![Ingredients Occurency in Log Scale](https://github.com/Arcaici/whatcooking/blob/NeuralNetwork_wirh_TensowFlow/images/IngredientsOccurrency_logscale.png)
+![Ingredients Occurency in Log Scale](https://github.com/Arcaici/whatcooking/blob/master/images/IngredientsOccurrency_logscale.png)
 
 ## Model Tuning
 Each model take in input words with a minimum document frequency of 50 units and a maximum document frequency of 6000 units, while for n-gram, 1-gram and 2-gram are choose as the best result. These statistics are choose using Naive Bayes, this model is used as a base model for check which words statistics perfom best over f1-micro-score, and they are use with the other models too.
